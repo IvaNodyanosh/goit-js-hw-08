@@ -11,4 +11,4 @@ iframePlayer.on("timeupdate", throttle((time) => {
 return localStorage.setItem("videoplayer-current-time", JSON.stringify(time.seconds))
 }, 1000));
 
-iframePlayer.setCurrentTime(Number.parseFloat(localStorage.getItem("videoplayer-current-time")))
+iframePlayer.setCurrentTime(Number.parseFloat(localStorage.getItem("videoplayer-current-time")) || 0);

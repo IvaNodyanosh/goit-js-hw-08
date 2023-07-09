@@ -10,32 +10,40 @@ console.log(button);
 
 
 
-
 const addData = function () {
     localStorage.setItem("feedback-form-state", JSON.stringify({ email: form.email.value, message: form.message.value }));
-}
 
-let data
+};
 
-try {
-    data = JSON.parse(localStorage.getItem("feedback-form-state"));
+
+    
+
+
+
+
+
+if (localStorage.getItem("feedback-form-state")) {
+
+    try {
+    const data = JSON.parse(localStorage.getItem("feedback-form-state"));
     form.email.value = data.email;
     form.message.value = data.message;
-} catch (error) {
-    console.log(error.message);
-}
+    } catch (error) {
+        console.log(error.message);
+    }
+
+
+};
 
 
 
 
 
+const formSubmit = function (event) {
 
-const formSubmit = function (e) {
+    event.preventDefault();
 
-    e.preventDefault();
-
-    console.log(data)
-
+    console.log(JSON.parse(localStorage.getItem("feedback-form-state")));
     
 
     form.email.value = "";
@@ -43,7 +51,7 @@ const formSubmit = function (e) {
 
     localStorage.removeItem("feedback-form-state");
 
-}
+};
 
 
 form.addEventListener("input", throttle(() => {
@@ -51,7 +59,7 @@ form.addEventListener("input", throttle(() => {
   }, 1000));
 
 
-form.addEventListener("submit", (event) => formSubmit(event))
+form.addEventListener("submit", (event) => formSubmit(event));
 
 
 
